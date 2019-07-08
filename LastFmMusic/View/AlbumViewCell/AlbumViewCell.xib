@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="175" id="KGk-i7-Jjw" customClass="AlbumViewCell" customModule="LastFmMusic" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="484" height="175"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="484" height="174.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="66u-bc-lUG">
+                        <rect key="frame" x="16" y="27.5" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="LC8-o9-AYE"/>
+                            <constraint firstAttribute="height" constant="120" id="fHu-lP-Plg"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJk-jn-KrY">
+                        <rect key="frame" x="148" y="27.5" width="316" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cJk-jn-KrY" firstAttribute="leading" secondItem="66u-bc-lUG" secondAttribute="trailing" constant="12" id="FJW-RH-5Tz"/>
+                    <constraint firstItem="cJk-jn-KrY" firstAttribute="top" secondItem="66u-bc-lUG" secondAttribute="top" id="KOY-o0-g6I"/>
+                    <constraint firstItem="66u-bc-lUG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LFx-HT-dlK"/>
+                    <constraint firstItem="66u-bc-lUG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="W55-Qq-cOf"/>
+                    <constraint firstItem="cJk-jn-KrY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="m6G-RI-jbx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="albumImageView" destination="66u-bc-lUG" id="Mz8-MI-lQ6"/>
+                <outlet property="albumNameLabel" destination="cJk-jn-KrY" id="9eU-KU-wjZ"/>
+            </connections>
+            <point key="canvasLocation" x="33.600000000000001" y="79.610194902548727"/>
+        </tableViewCell>
+    </objects>
+</document>

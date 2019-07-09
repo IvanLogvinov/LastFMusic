@@ -38,13 +38,13 @@ class DataManager {
         case .Albums:
             return "?method=tag.gettopalbums&tag=hip+hop"
         case .AlbumDetails:
-            let object = object as? AlbumsListModel
+            guard let object = object as? AlbumsListModel else { return "" }
             return "?method=album.getinfo" + "&artist="
-                + object!.artist.name.replacingOccurrences(of: " ", with: "+")
-                + "&album=" + object!.name.replacingOccurrences(of: " ", with: "+")
+                + object.artist.name.replacingOccurrences(of: " ", with: "+")
+                + "&album=" + object.name.replacingOccurrences(of: " ", with: "+")
         case .Artist:
-            let object = object as? ArtistModel
-            return "?method=artist.getinfo" + "&artist=" + object!.name.replacingOccurrences(of: " ", with: "+")
+            guard let object = object as? ArtistModel else { return "" }
+            return "?method=artist.getinfo" + "&artist=" + object.name.replacingOccurrences(of: " ", with: "+")
         }
     }
     
@@ -84,7 +84,7 @@ class DataManager {
                     completionHandler(nil, self.getStoredArtist())
                 }, json: json, type: type)
             }
-        }, url: getURLForDataType(type: type, object: nil))
+        }, url: getURLForDataType(type: type, object: artistModel))
     }
     
     func getStoredArtist() -> ArtistModel? {

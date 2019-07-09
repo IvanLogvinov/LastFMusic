@@ -84,11 +84,11 @@ class DetailsViewController: UIViewController {
     func setUpContent() {
         albumName.text = detailsModel?.name
         publishDateLabel.text = detailsModel?.publishDate
-        tracksCountLabel.text = String(detailsModel!.trackCount)
-        
         artistName.text = detailsModel?.artist?.name
-        if let listeners = detailsModel?.artist?.listeners {
+        if let listeners = detailsModel?.artist?.listeners,
+            let trackCount = detailsModel?.trackCount {
             artistListeners.text = String(listeners)
+            tracksCountLabel.text = String(trackCount)
         }
     }
     

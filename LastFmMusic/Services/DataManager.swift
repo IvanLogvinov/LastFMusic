@@ -87,66 +87,6 @@ class DataManager {
         }, url: getURLForDataType(type: type, object: artistModel))
     }
     
-    func getStoredArtist() -> ArtistModel? {
-        let storedArtist = dataBaseManager.getStoredObjects(entityName: Entities.artist.rawValue) as? [Artist]
-        var artistModel: ArtistModel!
-        if let storedArtist = storedArtist {
-            if let item = storedArtist.first,
-                let name = item.name {
-                artistModel = (ArtistModel.init(name: name, listeners: Int(item.listeners)))
-            }
-        }
-        return artistModel
-    }
-    
-    func getStoredAlbums() -> [AlbumsListModel] {
-        let storedAlbums = dataBaseManager.getStoredObjects(entityName: Entities.albums.rawValue) as? [Albums]
-        
-        var albumModelsArray: [AlbumsListModel] = []
-        
-        if let storedAlbums = storedAlbums {
-            for item in storedAlbums {
-                guard let albumName = item.albumName,
-                    let imageURL = item.imageURL,
-                    let artistName = item.artistName
-                    else  { return [] }
-                albumModelsArray.append(AlbumsListModel(name: albumName,
-                                                        artist: ArtistModel(name: artistName, listeners: 0),
-                                                        imageURL: imageURL))
-            }
-        }
-        
-        return albumModelsArray
-    }
-    
-    func getStoredAlbumDetails() -> AlbumsDetailsModel? {
-        let storedAlbum = dataBaseManager.getStoredObjects(entityName: Entities.albumDetails.rawValue) as? [AlbumDetails]
-        
-        if storedAlbum?.count == 0 {
-            return nil
-        }
-        
-        var albumDetailModel: AlbumsDetailsModel!
-        
-        if let storedAlbum = storedAlbum {
-            if let item = storedAlbum.first,
-                let name = item.name,
-                let url = item.url {
-                
-                var publishDate = item.publishDate
-                if (publishDate == nil) {
-                    publishDate = DataManager.kNotSpecifiedPlaceholder
-                }
-                
-                albumDetailModel = (AlbumsDetailsModel(name: name,
-                                                       trackCount: Int(item.tracksCount),
-                                                       publishDate: publishDate,
-                                                       url: url))
-            }
-        }
-        return albumDetailModel
-    }
-    
     func getImage(completionHandler: @escaping (UIImage?) -> Void, by url: String) {
         networkManager.getImage(by: url, completionHandler: { (image, error) in
             if error == nil {
@@ -157,4 +97,74 @@ class DataManager {
         })
     }
     
+    // MARK: - Get Stored Data
+    
+    func getStoredAlbums() -> [AlbumsListModel]? {
+        let storedAlbums = dataBaseManager.getStoredObjects(
+            entityName: Entities.albums.rawValue) as? [Albums]
+        guard let data = storedAlbums else { return [] }
+        return mapStoredAlbums(storedData: data)
+    }
+    
+    func getStoredAlbumDetails() -> AlbumsDetailsModel? {
+        let storedAlbumDetails = dataBaseManager.getStoredObjects(
+            entityName: Entities.albumDetails.rawValue) as? [AlbumDetails]
+        guard let data = storedAlbumDetails else { return nil }
+        return mapStoredAlbumDetail(storedData: data)
+    }
+    
+    func getStoredArtist() -> ArtistModel? {
+        let storedArtist = dataBaseManager.getStoredObjects(
+            entityName: Entities.artist.rawValue) as? [Artist]
+        guard let data = storedArtist else { return nil }
+        return mapStoredArtist(storedData: data)
+    }
+    
+    // MARK: - Mapping
+    
+    private func mapStoredAlbumDetail(storedData: [AlbumDetails]) -> AlbumsDetailsModel? {
+        if storedData.count == 0 {
+            return nil
+        }
+        var albumDetailModel: AlbumsDetailsModel!
+        if let item = storedData.first,
+            let name = item.name,
+            let url = item.url {
+            
+            var publishDate = item.publishDate
+            if (publishDate == nil) {
+                publishDate = DataManager.kNotSpecifiedPlaceholder
+            }
+            albumDetailModel = (AlbumsDetailsModel(name: name,
+                                                   trackCount: Int(item.tracksCount),
+                                                   publishDate: publishDate,
+                                                   url: url))
+        }
+        return albumDetailModel
+    }
+    
+    private func mapStoredAlbums(storedData: [Albums]) -> [AlbumsListModel]? {
+        var albumModelsArray: [AlbumsListModel] = []
+        for item in storedData {
+            guard let albumName = item.albumName,
+                let imageURL = item.imageURL,
+                let artistName = item.artistName
+                else  { return [] }
+            albumModelsArray.append(
+                AlbumsListModel(name: albumName,
+                                artist: ArtistModel(name: artistName, listeners: 0),
+                                imageURL: imageURL))
+        }
+        return albumModelsArray
+    }
+    
+    private func mapStoredArtist(storedData: [Artist]) -> ArtistModel? {
+        var artistModel: ArtistModel!
+        if let item = storedData.first,
+            let name = item.name {
+            artistModel = (ArtistModel.init(name: name,
+                                            listeners: Int(item.listeners)))
+        }
+        return artistModel
+    }
 }

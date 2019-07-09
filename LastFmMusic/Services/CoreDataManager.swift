@@ -12,6 +12,7 @@ import CoreData
 enum Entities: String {
     case albums = "Albums"
     case albumDetails = "AlbumDetails"
+    case artist = "Artist"
 }
 
 class CoreDataManager {

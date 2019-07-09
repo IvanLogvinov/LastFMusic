@@ -12,12 +12,14 @@ import UIKit
 class AlbumsDetailsModel {
     var name: String
     var trackCount: Int
-    var publishDate: Date
+    var publishDate: String?
     var artist: ArtistModel?
+    var url: String
     
-    init(name: String, trackCount: Int, publishDate: Date) {
+    init(name: String, trackCount: Int, publishDate: String?, url: String) {
         self.name = name
         self.trackCount = trackCount
         self.publishDate = publishDate
+        self.url = url
     }
 }

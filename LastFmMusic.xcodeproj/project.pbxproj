@@ -28,6 +28,11 @@
 		B203916E22D36D7A00089C8F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B203913E22D3444700089C8F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B203917122D38AB300089C8F /* AlbumDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917022D38AB300089C8F /* AlbumDetailsModel.swift */; };
 		B203917322D38B0D00089C8F /* ArtistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917222D38B0D00089C8F /* ArtistModel.swift */; };
+		B203917522D46B0200089C8F /* AppReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917422D46B0200089C8F /* AppReview.swift */; };
+		B20391BA22D4DA8B00089C8F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */; };
+		B20391BB22D4DA8B00089C8F /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B20391BC22D4DA8B00089C8F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */; };
+		B20391BD22D4DA8B00089C8F /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +43,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B203916C22D36D5E00089C8F /* SwiftyJSON.framework in Embed Frameworks */,
+				B20391BB22D4DA8B00089C8F /* FBSDKCoreKit.framework in Embed Frameworks */,
+				B20391BD22D4DA8B00089C8F /* FBSDKShareKit.framework in Embed Frameworks */,
 				B203916E22D36D7A00089C8F /* Alamofire.framework in Embed Frameworks */,
 				B203916922D36D2600089C8F /* Kingfisher.framework in Embed Frameworks */,
 			);
@@ -70,6 +77,14 @@
 		B203916522D3661800089C8F /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		B203917022D38AB300089C8F /* AlbumDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsModel.swift; sourceTree = "<group>"; };
 		B203917222D38B0D00089C8F /* ArtistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistModel.swift; sourceTree = "<group>"; };
+		B203917422D46B0200089C8F /* AppReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReview.swift; sourceTree = "<group>"; };
+		B203917622D471A200089C8F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.40.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		B203918622D478F800089C8F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B203918F22D47C6500089C8F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Carthage/Build/iOS/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		B203919022D47C6500089C8F /* FacebookLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookLogin.framework; path = Carthage/Build/iOS/FacebookLogin.framework; sourceTree = "<group>"; };
+		B203919122D47C6600089C8F /* FBSDKPlacesKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKPlacesKit.framework; path = Carthage/Build/iOS/FBSDKPlacesKit.framework; sourceTree = "<group>"; };
+		B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Carthage/Build/iOS/FBSDKShareKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B20391BC22D4DA8B00089C8F /* FBSDKShareKit.framework in Frameworks */,
+				B20391BA22D4DA8B00089C8F /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +103,8 @@
 		B203911D22D329F700089C8F = {
 			isa = PBXGroup;
 			children = (
+				B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */,
+				B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */,
 				B203912822D329F700089C8F /* LastFmMusic */,
 				B203912722D329F700089C8F /* Products */,
 				B203913B22D3444700089C8F /* Frameworks */,
@@ -119,6 +138,11 @@
 		B203913B22D3444700089C8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B203919022D47C6500089C8F /* FacebookLogin.framework */,
+				B203918F22D47C6500089C8F /* FBSDKLoginKit.framework */,
+				B203919122D47C6600089C8F /* FBSDKPlacesKit.framework */,
+				B203918622D478F800089C8F /* FBSDKCoreKit.framework */,
+				B203917622D471A200089C8F /* FBSDKShareKit.framework */,
 				B203913E22D3444700089C8F /* Alamofire.framework */,
 				B203913C22D3444700089C8F /* Kingfisher.framework */,
 				B203913D22D3444700089C8F /* SwiftyJSON.framework */,
@@ -130,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				B203914922D3462500089C8F /* Extensions.swift */,
+				B203917422D46B0200089C8F /* AppReview.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -269,6 +294,7 @@
 				B203915E22D34F3400089C8F /* AlbumViewCell.swift in Sources */,
 				B203915622D3475F00089C8F /* DataManager.swift in Sources */,
 				B203915922D3481900089C8F /* AlbumsViewController.swift in Sources */,
+				B203917522D46B0200089C8F /* AppReview.swift in Sources */,
 				B203914D22D3464F00089C8F /* AlbumsListModel.swift in Sources */,
 				B203914A22D3462500089C8F /* Extensions.swift in Sources */,
 				B203915422D3473400089C8F /* NetworkManager.swift in Sources */,
@@ -425,7 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZJL3L95RR7;
+				DEVELOPMENT_TEAM = TLHG3M474J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -435,7 +461,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ivanlogvinov.LastFmMusic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanlogvinov.LastFmMusicApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -447,7 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZJL3L95RR7;
+				DEVELOPMENT_TEAM = TLHG3M474J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -457,7 +484,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ivanlogvinov.LastFmMusic;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanlogvinov.LastFmMusicApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

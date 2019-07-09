@@ -13,9 +13,10 @@ class AlbumsViewController: UITableViewController {
     
     // MARK: - Constants
     
-    static let kCellHeightSize: CGFloat = 170
-    static let kCellErrorMsg = "Unexpected Cell Identifier"
-    static let kDetailsSegue = "DetailsSegue"
+    private static let kCellHeightSize: CGFloat = 170
+    private static let kCellErrorMsg = "Unexpected Cell Identifier"
+    private static let kDetailsSegue = "DetailsSegue"
+    private static let kDefaultReviewLaunches = 10
     
     // MARK: - Properties
     
@@ -31,6 +32,7 @@ class AlbumsViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(refreshPage), for: .valueChanged)
         tableView.refreshControl = refreshControl
         getAlbumsData()
+       // AppReview().showReviewView(afterMinimumLaunchCount: AlbumsViewController.kDefaultReviewLaunches)
     }
     
     func getAlbumsData() {

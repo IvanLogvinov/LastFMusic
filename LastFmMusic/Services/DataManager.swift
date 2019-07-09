@@ -12,9 +12,12 @@ import UIKit
 enum DataType {
     case Albums
     case AlbumDetails
+    case Artist
 }
 
 class DataManager {
+    
+    private static let kNotSpecifiedPlaceholder = "not specified"
     
     // MARK: - Properties
     
@@ -30,62 +33,118 @@ class DataManager {
     
     // MARK: - GET Requests
     
-    func getAlbumsList(completionHandler:@escaping (_ error: String?, _ albumArray: [AlbumsListModel]?) -> Void, type: DataType) {
+    func getURLForDataType(type: DataType, object: AnyObject?) -> String {
+        switch type {
+        case .Albums:
+            return "?method=tag.gettopalbums&tag=hip+hop"
+        case .AlbumDetails:
+            let object = object as? AlbumsListModel
+            return "?method=album.getinfo" + "&artist="
+                + object!.artist.name.replacingOccurrences(of: " ", with: "+")
+                + "&album=" + object!.name.replacingOccurrences(of: " ", with: "+")
+        case .Artist:
+            let object = object as? ArtistModel
+            return "?method=artist.getinfo" + "&artist=" + object!.name.replacingOccurrences(of: " ", with: "+")
+        }
+    }
+    
+    func getAlbumsList(completionHandler:@escaping (_ error: String?, _ albumArray: [AlbumsListModel]?) -> Void,
+                       type: DataType) {
         completionHandler(nil, self.getStoredAlbums())
-        networkManager.getAlbumsList(completionHandler: { (json, error) in
+        networkManager.getData(completionHandler: { (json, error) in
             if error == nil {
                 guard let json = json else { assert(false, "Error with response JSON") }
                 self.dataBaseManager.addAlbumData(completionHandler: { (status) in
                     completionHandler(nil, self.getStoredAlbums())
                 }, json: json, type: type)
             }
-        })
+        }, url: getURLForDataType(type: type, object: nil))
     }
     
-    func getAlbumDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: AlbumsDetailsModel?) -> Void, type: DataType) {
+    func getAlbumDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: AlbumsDetailsModel?) -> Void,
+                         type: DataType, albumModel: AlbumsListModel) {
         completionHandler(nil, self.getStoredAlbumDetails())
-        networkManager.getAlbumsList(completionHandler: { (json, error) in
+        networkManager.getData(completionHandler: { (json, error) in
             if error == nil {
                 guard let json = json else { assert(false, "Error with response JSON") }
                 self.dataBaseManager.addAlbumData(completionHandler: { (status) in
                     completionHandler(nil, self.getStoredAlbumDetails())
                 }, json: json, type: type)
             }
-        })
+        }, url: getURLForDataType(type: type, object: albumModel))
+    }
+    
+    func getArtistDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: ArtistModel?) -> Void,
+                          type: DataType, artistModel: ArtistModel) {
+        completionHandler(nil, self.getStoredArtist())
+        networkManager.getData(completionHandler: { (json, error) in
+            if error == nil {
+                guard let json = json else { assert(false, "Error with response JSON") }
+                self.dataBaseManager.addAlbumData(completionHandler: { (status) in
+                    completionHandler(nil, self.getStoredArtist())
+                }, json: json, type: type)
+            }
+        }, url: getURLForDataType(type: type, object: nil))
+    }
+    
+    func getStoredArtist() -> ArtistModel? {
+        let storedArtist = dataBaseManager.getStoredObjects(entityName: Entities.artist.rawValue) as? [Artist]
+        var artistModel: ArtistModel!
+        if let storedArtist = storedArtist {
+            if let item = storedArtist.first,
+                let name = item.name {
+                artistModel = (ArtistModel.init(name: name, listeners: Int(item.listeners)))
+            }
+        }
+        return artistModel
     }
     
     func getStoredAlbums() -> [AlbumsListModel] {
-        let storedNews = dataBaseManager.getStoredObjects(predicate: nil, sortDescriptor: nil, entityName: Entities.albums.rawValue) as? [Albums]
+        let storedAlbums = dataBaseManager.getStoredObjects(entityName: Entities.albums.rawValue) as? [Albums]
         
         var albumModelsArray: [AlbumsListModel] = []
         
-        if let storedNews = storedNews {
-            for item in storedNews {
-                guard let name = item.name,
-                    let imageURL = item.imageURL else  { return [] }
-                albumModelsArray.append(AlbumsListModel(name: name, imageURL: imageURL))
+        if let storedAlbums = storedAlbums {
+            for item in storedAlbums {
+                guard let albumName = item.albumName,
+                    let imageURL = item.imageURL,
+                    let artistName = item.artistName
+                    else  { return [] }
+                albumModelsArray.append(AlbumsListModel(name: albumName,
+                                                        artist: ArtistModel(name: artistName, listeners: 0),
+                                                        imageURL: imageURL))
             }
         }
         
         return albumModelsArray
     }
     
-    func getStoredAlbumDetails() -> AlbumsDetailsModel {
-        let storedNews = dataBaseManager.getStoredObjects(predicate: nil, sortDescriptor: nil, entityName: Entities.albumDetails.rawValue) as? [AlbumDetails]
+    func getStoredAlbumDetails() -> AlbumsDetailsModel? {
+        let storedAlbum = dataBaseManager.getStoredObjects(entityName: Entities.albumDetails.rawValue) as? [AlbumDetails]
         
-        var albumDetailModelArray: AlbumsDetailsModel!
+        if storedAlbum?.count == 0 {
+            return nil
+        }
         
-        if let storedNews = storedNews {
-            for item in storedNews {
-                guard let name = item.name,
-                    let date = item.publishDate
-                    else  { return albumDetailModelArray }
-                albumDetailModelArray = (AlbumsDetailsModel(name: name,
-                                                            trackCount: Int(item.tracksCount),
-                                                            publishDate: date))
+        var albumDetailModel: AlbumsDetailsModel!
+        
+        if let storedAlbum = storedAlbum {
+            if let item = storedAlbum.first,
+                let name = item.name,
+                let url = item.url {
+                
+                var publishDate = item.publishDate
+                if (publishDate == nil) {
+                    publishDate = DataManager.kNotSpecifiedPlaceholder
+                }
+                
+                albumDetailModel = (AlbumsDetailsModel(name: name,
+                                                       trackCount: Int(item.tracksCount),
+                                                       publishDate: publishDate,
+                                                       url: url))
             }
         }
-        return albumDetailModelArray
+        return albumDetailModel
     }
     
     func getImage(completionHandler: @escaping (UIImage?) -> Void, by url: String) {

@@ -15,8 +15,9 @@ class NetworkManager {
     
     // MARK: - Properties
     
-    var baseURL: String = ""
-    var apiKey: String = ""
+    private var baseURL = ""
+    private var apiKey = ""
+    private var staticUrlString = ""
     
     // MARK: - Lifecycle
     
@@ -27,18 +28,21 @@ class NetworkManager {
                 else { assert(false, "There is a problem with Base URL string") }
             self.baseURL = baseURL
             self.apiKey = apiKey
+            self.staticUrlString = "&api_key=" + apiKey + "&format=json"
         }
     }
     
     
-    // MARK: - Manage User Data
+    // MARK: - Get Data
     
-    func getAlbumsList(completionHandler: @escaping (JSON?, String?) -> Void) {
+    func getData(completionHandler: @escaping (JSON?, String?) -> Void, url: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let url = baseURL + "?method=tag.gettopalbums&tag=hip+hop&api_key=" + apiKey + "&format=json"
+
+        let url = baseURL + url + staticUrlString
+
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in
-                
+
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 switch response.result {
                 case .success:
@@ -52,27 +56,6 @@ class NetworkManager {
                 }
         }
     }
-    
-    func getAlbumDetails(completionHandler: @escaping (JSON?, String?) -> Void) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let url = baseURL + "?method=tag.gettopalbums&tag=hip+hop&api_key=" + apiKey + "&format=json"
-        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
-            .responseJSON { response in
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                switch response.result {
-                case .success:
-                    do {
-                        try completionHandler(JSON(response.result.get()), nil)
-                    } catch {
-                        completionHandler(nil, error.localizedDescription)
-                    }
-                case .failure(let error):
-                    completionHandler(nil, error.localizedDescription)
-                }
-        }
-    }
-    
     
     // MARK: - Album Image
     

@@ -61,7 +61,7 @@ class DataManager {
         }, url: getURLForDataType(type: type, object: nil))
     }
     
-    func getAlbumDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: AlbumsDetailsModel?) -> Void,
+    func getAlbumDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: AlbumDetailModel?) -> Void,
                          type: DataType, albumModel: AlbumsListModel) {
         completionHandler(nil, self.getStoredAlbumDetails())
         networkManager.getData(completionHandler: { (json, error) in
@@ -106,7 +106,7 @@ class DataManager {
         return mapStoredAlbums(storedData: data)
     }
     
-    func getStoredAlbumDetails() -> AlbumsDetailsModel? {
+    func getStoredAlbumDetails() -> AlbumDetailModel? {
         let storedAlbumDetails = dataBaseManager.getStoredObjects(
             entityName: Entities.albumDetails.rawValue) as? [AlbumDetails]
         guard let data = storedAlbumDetails else { return nil }
@@ -122,11 +122,11 @@ class DataManager {
     
     // MARK: - Mapping
     
-    private func mapStoredAlbumDetail(storedData: [AlbumDetails]) -> AlbumsDetailsModel? {
+    private func mapStoredAlbumDetail(storedData: [AlbumDetails]) -> AlbumDetailModel? {
         if storedData.count == 0 {
             return nil
         }
-        var albumDetailModel: AlbumsDetailsModel!
+        var albumDetailModel: AlbumDetailModel!
         if let item = storedData.first,
             let name = item.name,
             let url = item.url {
@@ -135,7 +135,7 @@ class DataManager {
             if (publishDate == nil) {
                 publishDate = DataManager.kNotSpecifiedPlaceholder
             }
-            albumDetailModel = (AlbumsDetailsModel(name: name,
+            albumDetailModel = (AlbumDetailModel(name: name,
                                                    trackCount: Int(item.tracksCount),
                                                    publishDate: publishDate,
                                                    url: url))

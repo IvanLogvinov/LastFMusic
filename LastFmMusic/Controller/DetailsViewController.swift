@@ -18,7 +18,7 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private var detailsModel: AlbumsDetailsModel?
+    private var detailsModel: AlbumDetailModel?
     
     // MARK: - View Outlets
     

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AlbumsDetailsModel {
+class AlbumDetailModel {
     var name: String
     var trackCount: Int
     var publishDate: String?

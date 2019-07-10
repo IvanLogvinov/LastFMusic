@@ -17,30 +17,21 @@ enum Entities: String {
 
 class CoreDataManager {
     
+    // MARK: - Constant
+    
+    private static let dataBaseName = "LastFmApp"
+    
     // MARK: - Properties
     
-    static let dataBaseName = "LastFmApp"
+    private var persistentContainer: NSPersistentContainer
+    private var privateContext: NSManagedObjectContext
     
-    var persistentContainer: NSPersistentContainer
-    var privateContext: NSManagedObjectContext
     private static var sharedCoreDataManager: CoreDataManager = {
         let coreDataManager = CoreDataManager()
         return coreDataManager
     }()
     
-    
-    func saveContext() {
-        if privateContext.hasChanges {
-            do {
-                try privateContext.save()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    
-    // MARK: - Initialization
+    // MARK: - Init
     
     private init() {
         self.persistentContainer = NSPersistentContainer(name: CoreDataManager.dataBaseName)
@@ -50,6 +41,10 @@ class CoreDataManager {
             }
         }
         self.privateContext = self.persistentContainer.newBackgroundContext()
+    }
+    
+    func getContext() -> NSManagedObjectContext {
+        return privateContext
     }
     
     

@@ -35,27 +35,71 @@ class NetworkManager {
     
     // MARK: - Get Data
     
-    func getData(completionHandler: @escaping (JSON?, String?) -> Void, url: String) {
+    func getAlbumData(completionHandler: @escaping ([AlbumsListModel]?, String?) -> Void, url: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
+        
         let url = baseURL + url + staticUrlString
-
+        
         AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in
-
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 switch response.result {
                 case .success:
                     do {
-                        try completionHandler(JSON(response.result.get()), nil)
+                        completionHandler(try parseAlbumData(json: JSON(response.result.get())), nil)
                     } catch {
-                        completionHandler(nil, error.localizedDescription)
+                        completionHandler(nil, "Couldn't get JSON from response data")
                     }
                 case .failure(let error):
                     completionHandler(nil, error.localizedDescription)
                 }
         }
     }
+    
+    func getAlbumDetailData(completionHandler: @escaping (AlbumDetailModel?, String?) -> Void, url: String) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        let url = baseURL + url + staticUrlString
+        
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
+            .responseJSON { response in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                switch response.result {
+                case .success:
+                    do {
+                        completionHandler(try parseDetailsData(json: JSON(response.result.get())), nil)
+                    } catch {
+                        completionHandler(nil, "Couldn't get JSON from response data")
+                    }
+                case .failure(let error):
+                    completionHandler(nil, error.localizedDescription)
+                }
+        }
+    }
+    
+    
+    func getArtistData(completionHandler: @escaping (ArtistModel?, String?) -> Void, url: String) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        let url = baseURL + url + staticUrlString
+        
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
+            .responseJSON { response in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                switch response.result {
+                case .success:
+                    do {
+                        completionHandler(try parseArtistData(json: JSON(response.result.get())), nil)
+                    } catch {
+                        completionHandler(nil, "Couldn't get JSON from response data")
+                    }
+                case .failure(let error):
+                    completionHandler(nil, error.localizedDescription)
+                }
+        }
+    }
+    
+   
     
     // MARK: - Album Image
     

@@ -14,7 +14,8 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Dependency Properties
     
-    var albumItem: AlbumsListModel?
+    var albumItem: AlbumsListModel!
+    var dataManager: DataManager!
     
     // MARK: - Private Properties
     
@@ -40,23 +41,21 @@ class DetailsViewController: UIViewController {
     // MARK: - Get Data Methods
     
     func getAlbumData() {
-        if let albumItem = albumItem {
-            DataManager().getAlbumDetails(completionHandler: { [weak self] (error, detailsModel) in
+            dataManager?.getAlbumDetails(completionHandler: { [weak self] (error, detailsModel) in
                 if error == nil, let detailsModel = detailsModel {
                     self?.detailsModel = detailsModel
                     self?.getArtistData()
                 }
                 }, type: .albumDetails, albumModel: albumItem)
-        }
     }
     
     func getArtistData() {
-        DataManager().getArtistDetails(completionHandler: { [weak self] (error, artistModel) in
+        dataManager.getArtistDetails(completionHandler: { [weak self] (error, artistModel) in
             if error == nil, let artistModel = artistModel {
                 self?.detailsModel?.artist = artistModel
                 self?.setUpContent()
             }
-            }, type: .artist, artistModel: albumItem!.artist)
+            }, type: .artist, artistModel: albumItem.artist)
     }
     
     // MARK: - Actions

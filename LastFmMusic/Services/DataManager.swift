@@ -17,7 +17,6 @@ enum DataType {
 
 class DataManager {
     
-    private static let kNotSpecifiedPlaceholder = "not specified"
     
     // MARK: - Properties
     
@@ -51,12 +50,12 @@ class DataManager {
     func getAlbumsList(completionHandler:@escaping (_ error: String?, _ albumArray: [AlbumsListModel]?) -> Void,
                        type: DataType) {
         completionHandler(nil, self.getStoredAlbums())
-        networkManager.getData(completionHandler: { (json, error) in
+        networkManager.getAlbumData(completionHandler: { (modelArray, error) in
             if error == nil {
-                guard let json = json else { assert(false, "Error with response JSON") }
+                guard let modelArray = modelArray else { assert(false, Error.errorJson.rawValue) }
                 self.dataBaseManager.addAlbumData(completionHandler: { (status) in
                     completionHandler(nil, self.getStoredAlbums())
-                }, json: json, type: type)
+                }, albums: modelArray)
             }
         }, url: getURLForDataType(type: type, object: nil))
     }
@@ -64,12 +63,12 @@ class DataManager {
     func getAlbumDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: AlbumDetailModel?) -> Void,
                          type: DataType, albumModel: AlbumsListModel) {
         completionHandler(nil, self.getStoredAlbumDetails())
-        networkManager.getData(completionHandler: { (json, error) in
+        networkManager.getAlbumDetailData(completionHandler: { (album, error) in
             if error == nil {
-                guard let json = json else { assert(false, "Error with response JSON") }
-                self.dataBaseManager.addAlbumData(completionHandler: { (status) in
+                guard let album = album else { assert(false, Error.errorJson.rawValue) }
+                self.dataBaseManager.addAlbumDetailsData(completionHandler: { (status) in
                     completionHandler(nil, self.getStoredAlbumDetails())
-                }, json: json, type: type)
+                }, albumDetail: album)
             }
         }, url: getURLForDataType(type: type, object: albumModel as AnyObject))
     }
@@ -77,12 +76,12 @@ class DataManager {
     func getArtistDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: ArtistModel?) -> Void,
                           type: DataType, artistModel: ArtistModel) {
         completionHandler(nil, self.getStoredArtist())
-        networkManager.getData(completionHandler: { (json, error) in
+        networkManager.getArtistData(completionHandler: { (artist, error) in
             if error == nil {
-                guard let json = json else { assert(false, "Error with response JSON") }
-                self.dataBaseManager.addAlbumData(completionHandler: { (status) in
+                guard let artist = artist else { assert(false, Error.errorJson.rawValue) }
+                self.dataBaseManager.addArtistData(completionHandler: { (status) in
                     completionHandler(nil, self.getStoredArtist())
-                }, json: json, type: type)
+                }, artist: artist)
             }
         }, url: getURLForDataType(type: type, object: artistModel as AnyObject))
     }
@@ -120,51 +119,5 @@ class DataManager {
         return mapStoredArtist(storedData: data)
     }
     
-    // MARK: - Mapping
-    
-    private func mapStoredAlbumDetail(storedData: [AlbumDetails]) -> AlbumDetailModel? {
-        if storedData.count == 0 {
-            return nil
-        }
-        var albumDetailModel: AlbumDetailModel!
-        if let item = storedData.first,
-            let name = item.name,
-            let url = item.url {
-            
-            var publishDate = item.publishDate
-            if (publishDate == nil) {
-                publishDate = DataManager.kNotSpecifiedPlaceholder
-            }
-            albumDetailModel = (AlbumDetailModel(name: name,
-                                                   trackCount: Int(item.tracksCount),
-                                                   publishDate: publishDate,
-                                                   url: url))
-        }
-        return albumDetailModel
-    }
-    
-    private func mapStoredAlbums(storedData: [Albums]) -> [AlbumsListModel]? {
-        var albumModelsArray: [AlbumsListModel] = []
-        for item in storedData {
-            guard let albumName = item.albumName,
-                let imageURL = item.imageURL,
-                let artistName = item.artistName
-                else  { return [] }
-            albumModelsArray.append(
-                AlbumsListModel(name: albumName,
-                                artist: ArtistModel(name: artistName, listeners: 0),
-                                imageURL: imageURL))
-        }
-        return albumModelsArray
-    }
-    
-    private func mapStoredArtist(storedData: [Artist]) -> ArtistModel? {
-        var artistModel: ArtistModel!
-        if let item = storedData.first,
-            let name = item.name {
-            artistModel = (ArtistModel.init(name: name,
-                                            listeners: Int(item.listeners)))
-        }
-        return artistModel
-    }
+  
 }

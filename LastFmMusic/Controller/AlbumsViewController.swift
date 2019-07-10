@@ -14,7 +14,6 @@ class AlbumsViewController: UITableViewController {
     // MARK: - Constants
     
     private static let kCellHeightSize: CGFloat = 170
-    private static let kCellErrorMsg = "Unexpected Cell Identifier"
     private static let kDetailsSegue = "DetailsSegue"
     
     // MARK: - Properties
@@ -51,7 +50,7 @@ class AlbumsViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumViewCell.identifier(), for: indexPath) as? AlbumViewCell else { fatalError(AlbumsViewController.kCellErrorMsg) }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumViewCell.identifier(), for: indexPath) as? AlbumViewCell else { fatalError(Error.cellErrorMsg.rawValue) }
         
         let albumModel = albumArray[indexPath.row]
         cell.setAlbumData(albumModel: albumModel)
@@ -76,6 +75,7 @@ class AlbumsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? DetailsViewController {
             vc.albumItem = sender as? AlbumsListModel
+            vc.dataManager = self.dataManager
         }
     }
 }

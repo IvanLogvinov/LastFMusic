@@ -33,6 +33,9 @@
 		B20391BB22D4DA8B00089C8F /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B20391BC22D4DA8B00089C8F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */; };
 		B20391BD22D4DA8B00089C8F /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B20391BF22D6002400089C8F /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391BE22D6002400089C8F /* DataMapping.swift */; };
+		B20391C122D60DD600089C8F /* DataParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391C022D60DD600089C8F /* DataParsing.swift */; };
+		B20391C322D61B7600089C8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391C222D61B7600089C8F /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +88,9 @@
 		B203919122D47C6600089C8F /* FBSDKPlacesKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKPlacesKit.framework; path = Carthage/Build/iOS/FBSDKPlacesKit.framework; sourceTree = "<group>"; };
 		B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Carthage/Build/iOS/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Carthage/Build/iOS/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		B20391BE22D6002400089C8F /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
+		B20391C022D60DD600089C8F /* DataParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParsing.swift; sourceTree = "<group>"; };
+		B20391C222D61B7600089C8F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 			children = (
 				B203914922D3462500089C8F /* Extensions.swift */,
 				B203917422D46B0200089C8F /* AppReview.swift */,
+				B20391C222D61B7600089C8F /* Enums.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -176,6 +183,8 @@
 				B203915122D346BC00089C8F /* DataBaseManager.swift */,
 				B203915322D3473400089C8F /* NetworkManager.swift */,
 				B203915522D3475F00089C8F /* DataManager.swift */,
+				B20391BE22D6002400089C8F /* DataMapping.swift */,
+				B20391C022D60DD600089C8F /* DataParsing.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -294,12 +303,15 @@
 				B203915E22D34F3400089C8F /* AlbumViewCell.swift in Sources */,
 				B203915622D3475F00089C8F /* DataManager.swift in Sources */,
 				B203915922D3481900089C8F /* AlbumsViewController.swift in Sources */,
+				B20391BF22D6002400089C8F /* DataMapping.swift in Sources */,
 				B203917522D46B0200089C8F /* AppReview.swift in Sources */,
+				B20391C322D61B7600089C8F /* Enums.swift in Sources */,
 				B203914D22D3464F00089C8F /* AlbumsListModel.swift in Sources */,
 				B203914A22D3462500089C8F /* Extensions.swift in Sources */,
 				B203915422D3473400089C8F /* NetworkManager.swift in Sources */,
 				B203917122D38AB300089C8F /* AlbumDetailModel.swift in Sources */,
 				B203917322D38B0D00089C8F /* ArtistModel.swift in Sources */,
+				B20391C122D60DD600089C8F /* DataParsing.swift in Sources */,
 				B203915022D3468900089C8F /* CoreDataManager.swift in Sources */,
 				B203915222D346BC00089C8F /* DataBaseManager.swift in Sources */,
 				B203916422D3609100089C8F /* LastFmApp.xcdatamodeld in Sources */,

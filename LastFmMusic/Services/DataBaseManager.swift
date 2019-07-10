@@ -12,44 +12,44 @@ import SwiftyJSON
 
 class DataBaseManager {
     
-    let managedObjectContext =  CoreDataManager.shared().privateContext
+    let managedObjectContext =  CoreDataManager.shared().getContext()
     
     // MARK: - Add New Records
     
-    func addAlbumData(completionHandler:@escaping (Bool) -> Void,
-                      json: JSON, type: DataType) {
-        
-        
-        deleteEntityData(entityName: Entities.albums.rawValue)
+    func addAlbumDetailsData(completionHandler:@escaping (Bool) -> Void,
+                             albumDetail: AlbumDetailModel) {
         deleteEntityData(entityName: Entities.albumDetails.rawValue)
+        
+        if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albumDetails.rawValue),
+                                                                into: managedObjectContext) as? AlbumDetails {
+            mapAlbumDetailsManagedObject(recordItem: recordItem, albumDetail: albumDetail)
+        }
+        saveContextData()
+        completionHandler(true)
+    }
+    
+    func addArtistData(completionHandler:@escaping (Bool) -> Void,
+                       artist: ArtistModel) {
         deleteEntityData(entityName: Entities.artist.rawValue)
         
-        if  (type == DataType.albums) {
-            for (_,subJson):(String, JSON) in json["albums"]["album"] {
-                if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albums.rawValue),
-                                                                        into: managedObjectContext) as? Albums {
-                    recordItem.albumName = subJson["name"].string
-                    recordItem.imageURL = subJson["image"][2]["#text"].string
-                    recordItem.artistName = subJson["artist"]["name"].string
-                }
-            }
-        } else if (type == DataType.albumDetails) {
-            if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albumDetails.rawValue),
-                                                                    into: managedObjectContext) as? AlbumDetails {
-                let subJson = json["album"]
-                recordItem.name = subJson["name"].string
-                recordItem.publishDate = subJson["wiki"]["published"].string
-                recordItem.tracksCount = Int16(subJson["tracks"]["track"].count)
-                recordItem.url = subJson["url"].string
-            }
-        } else if (type == DataType.artist) {
-            if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.artist.rawValue),
-                                                                    into: managedObjectContext) as? Artist {
-                recordItem.name = json["artist"]["name"].string
-                recordItem.listeners = json["artist"]["stats"]["listeners"].int64Value
+        if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.artist.rawValue),
+                                                                into: managedObjectContext) as? Artist {
+            mapArtistManagedObject(recordItem: recordItem, artist: artist)
+        }
+        saveContextData()
+        completionHandler(true)
+    }
+    
+    func addAlbumData(completionHandler:@escaping (Bool) -> Void,
+                      albums: [AlbumsListModel]) {
+        deleteEntityData(entityName: Entities.albums.rawValue)
+        
+        for album in albums {
+            if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albums.rawValue),
+                                                                    into: managedObjectContext) as? Albums {
+                mapAlbumManagedObject(recordItem: recordItem, album: album)
             }
         }
-        
         saveContextData()
         completionHandler(true)
     }

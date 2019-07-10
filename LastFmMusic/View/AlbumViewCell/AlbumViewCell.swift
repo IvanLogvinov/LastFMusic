@@ -11,6 +11,8 @@ import Kingfisher
 
 class AlbumViewCell: UITableViewCell {
     
+    // MARK: - View Outlets
+    
     @IBOutlet weak var albumImageView: UIImageView!
     @IBOutlet weak var albumNameLabel: UILabel!
     
@@ -18,6 +20,8 @@ class AlbumViewCell: UITableViewCell {
         super.awakeFromNib()
         self.separatorInset = UIEdgeInsets.zero
     }
+    
+    // MARK: - Set View Data
     
     func setAlbumData(albumModel: AlbumsListModel) {
         albumNameLabel.text = albumModel.name

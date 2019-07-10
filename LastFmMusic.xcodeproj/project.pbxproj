@@ -36,7 +36,19 @@
 		B20391BF22D6002400089C8F /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391BE22D6002400089C8F /* DataMapping.swift */; };
 		B20391C122D60DD600089C8F /* DataParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391C022D60DD600089C8F /* DataParsing.swift */; };
 		B20391C322D61B7600089C8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391C222D61B7600089C8F /* Enums.swift */; };
+		B20391CB22D61D0700089C8F /* LastFmMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391CA22D61D0700089C8F /* LastFmMusicTests.swift */; };
+		B20391D622D627BC00089C8F /* AlbumInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = B20391D522D627BB00089C8F /* AlbumInfo.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B20391CD22D61D0700089C8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B203911E22D329F700089C8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B203912522D329F700089C8F;
+			remoteInfo = LastFmMusic;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		B203916A22D36D2600089C8F /* Embed Frameworks */ = {
@@ -91,6 +103,10 @@
 		B20391BE22D6002400089C8F /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		B20391C022D60DD600089C8F /* DataParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParsing.swift; sourceTree = "<group>"; };
 		B20391C222D61B7600089C8F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		B20391C822D61D0600089C8F /* LastFmMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LastFmMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20391CA22D61D0700089C8F /* LastFmMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFmMusicTests.swift; sourceTree = "<group>"; };
+		B20391CC22D61D0700089C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B20391D522D627BB00089C8F /* AlbumInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumInfo.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B20391C522D61D0600089C8F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -112,6 +135,7 @@
 				B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */,
 				B20391B922D4DA8A00089C8F /* FBSDKShareKit.framework */,
 				B203912822D329F700089C8F /* LastFmMusic */,
+				B20391C922D61D0600089C8F /* LastFmMusicTests */,
 				B203912722D329F700089C8F /* Products */,
 				B203913B22D3444700089C8F /* Frameworks */,
 			);
@@ -121,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B203912622D329F700089C8F /* LastFmMusic.app */,
+				B20391C822D61D0600089C8F /* LastFmMusicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -226,6 +251,24 @@
 			path = AlbumViewCell;
 			sourceTree = "<group>";
 		};
+		B20391C922D61D0600089C8F /* LastFmMusicTests */ = {
+			isa = PBXGroup;
+			children = (
+				B20391D222D6273D00089C8F /* JSONFiles */,
+				B20391CA22D61D0700089C8F /* LastFmMusicTests.swift */,
+				B20391CC22D61D0700089C8F /* Info.plist */,
+			);
+			path = LastFmMusicTests;
+			sourceTree = "<group>";
+		};
+		B20391D222D6273D00089C8F /* JSONFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B20391D522D627BB00089C8F /* AlbumInfo.json */,
+			);
+			path = JSONFiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +290,24 @@
 			productReference = B203912622D329F700089C8F /* LastFmMusic.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B20391C722D61D0600089C8F /* LastFmMusicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B20391CF22D61D0700089C8F /* Build configuration list for PBXNativeTarget "LastFmMusicTests" */;
+			buildPhases = (
+				B20391C422D61D0600089C8F /* Sources */,
+				B20391C522D61D0600089C8F /* Frameworks */,
+				B20391C622D61D0600089C8F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B20391CE22D61D0700089C8F /* PBXTargetDependency */,
+			);
+			name = LastFmMusicTests;
+			productName = LastFmMusicTests;
+			productReference = B20391C822D61D0600089C8F /* LastFmMusicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -259,6 +320,10 @@
 				TargetAttributes = {
 					B203912522D329F700089C8F = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					B20391C722D61D0600089C8F = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = B203912522D329F700089C8F;
 					};
 				};
 			};
@@ -276,6 +341,7 @@
 			projectRoot = "";
 			targets = (
 				B203912522D329F700089C8F /* LastFmMusic */,
+				B20391C722D61D0600089C8F /* LastFmMusicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -290,6 +356,14 @@
 				B203913122D329FB00089C8F /* Assets.xcassets in Resources */,
 				B203912F22D329F700089C8F /* Main.storyboard in Resources */,
 				B203916622D3661800089C8F /* config.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B20391C622D61D0600089C8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B20391D622D627BC00089C8F /* AlbumInfo.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +394,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B20391C422D61D0600089C8F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B20391CB22D61D0700089C8F /* LastFmMusicTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B20391CE22D61D0700089C8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B203912522D329F700089C8F /* LastFmMusic */;
+			targetProxy = B20391CD22D61D0700089C8F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B203912D22D329F700089C8F /* Main.storyboard */ = {
@@ -440,6 +530,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -504,6 +595,46 @@
 			};
 			name = Release;
 		};
+		B20391D022D61D0700089C8F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZJL3L95RR7;
+				INFOPLIST_FILE = LastFmMusicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanlogvinov.LastFmMusicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LastFmMusic.app/LastFmMusic";
+			};
+			name = Debug;
+		};
+		B20391D122D61D0700089C8F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZJL3L95RR7;
+				INFOPLIST_FILE = LastFmMusicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanlogvinov.LastFmMusicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LastFmMusic.app/LastFmMusic";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -521,6 +652,15 @@
 			buildConfigurations = (
 				B203913922D329FB00089C8F /* Debug */,
 				B203913A22D329FB00089C8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B20391CF22D61D0700089C8F /* Build configuration list for PBXNativeTarget "LastFmMusicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B20391D022D61D0700089C8F /* Debug */,
+				B20391D122D61D0700089C8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

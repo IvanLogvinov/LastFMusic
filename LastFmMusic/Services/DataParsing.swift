@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-func parseAlbumData(json: JSON) -> [AlbumsListModel] {
+func parseAlbumData(json: JSON) -> [AlbumsListModel]? {
     var albumModelsArray: [AlbumsListModel] = []
     
     for (_,subJson):(String, JSON) in json["albums"]["album"] {
@@ -25,7 +25,7 @@ func parseAlbumData(json: JSON) -> [AlbumsListModel] {
     return albumModelsArray
 }
 
-func parseDetailsData(json: JSON) -> AlbumDetailModel {
+func parseDetailsData(json: JSON) -> AlbumDetailModel? {
     var albumDetails: AlbumDetailModel!
     let subJson = json["album"]
     
@@ -38,7 +38,7 @@ func parseDetailsData(json: JSON) -> AlbumDetailModel {
     return albumDetails
 }
 
-func parseArtistData(json: JSON) -> ArtistModel {
+func parseArtistData(json: JSON) -> ArtistModel? {
     var artist: ArtistModel!
     artist = ArtistModel.init(name: json["artist"]["name"].string ?? "",
                               listeners: json["artist"]["stats"]["listeners"].intValue)

@@ -18,6 +18,8 @@ class DataBaseManager {
     
     func addAlbumDetailsData(completionHandler:@escaping (Bool) -> Void,
                              albumDetail: AlbumDetailModel) {
+        
+        // TODO: add check for duplicates and disable database clean
         deleteEntityData(entityName: Entities.albumDetails.rawValue)
         
         if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albumDetails.rawValue),
@@ -31,7 +33,7 @@ class DataBaseManager {
     func addArtistData(completionHandler:@escaping (Bool) -> Void,
                        artist: ArtistModel) {
         deleteEntityData(entityName: Entities.artist.rawValue)
-        
+        // TODO: add check for duplicates and disable database clean
         if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.artist.rawValue),
                                                                 into: managedObjectContext) as? Artist {
             mapArtistManagedObject(recordItem: recordItem, artist: artist)
@@ -43,7 +45,7 @@ class DataBaseManager {
     func addAlbumData(completionHandler:@escaping (Bool) -> Void,
                       albums: [AlbumsListModel]) {
         deleteEntityData(entityName: Entities.albums.rawValue)
-        
+        // TODO: add check for duplicates and disable database clean
         for album in albums {
             if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albums.rawValue),
                                                                     into: managedObjectContext) as? Albums {

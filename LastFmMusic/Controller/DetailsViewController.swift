@@ -46,7 +46,7 @@ class DetailsViewController: UIViewController {
                     self?.detailsModel = detailsModel
                     self?.getArtistData()
                 }
-                }, type: .AlbumDetails, albumModel: albumItem)
+                }, type: .albumDetails, albumModel: albumItem)
         }
     }
     
@@ -56,7 +56,7 @@ class DetailsViewController: UIViewController {
                 self?.detailsModel?.artist = artistModel
                 self?.setUpContent()
             }
-            }, type: .Artist, artistModel: albumItem!.artist)
+            }, type: .artist, artistModel: albumItem!.artist)
     }
     
     // MARK: - Actions

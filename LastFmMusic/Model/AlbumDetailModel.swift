@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-class AlbumDetailModel {
-    var name: String
-    var trackCount: Int
-    var publishDate: String?
+struct AlbumDetailModel {
+    let name: String
+    let trackCount: Int
+    let publishDate: String?
     var artist: ArtistModel?
-    var url: String
+    let url: String
     
     init(name: String, trackCount: Int, publishDate: String?, url: String) {
         self.name = name

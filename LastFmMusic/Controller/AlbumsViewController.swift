@@ -16,7 +16,6 @@ class AlbumsViewController: UITableViewController {
     private static let kCellHeightSize: CGFloat = 170
     private static let kCellErrorMsg = "Unexpected Cell Identifier"
     private static let kDetailsSegue = "DetailsSegue"
-    private static let kDefaultReviewLaunches = 10
     
     // MARK: - Properties
     
@@ -32,7 +31,6 @@ class AlbumsViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(refreshPage), for: .valueChanged)
         tableView.refreshControl = refreshControl
         getAlbumsData()
-        AppReview().showReviewView(afterMinimumLaunchCount: AlbumsViewController.kDefaultReviewLaunches)
     }
     
     func getAlbumsData() {
@@ -43,7 +41,7 @@ class AlbumsViewController: UITableViewController {
                 self?.tableView.reloadData()
                 self?.refreshControl?.endRefreshing()
             }
-        }, type: .Albums)
+        }, type: .albums)
     }
     
     @objc func refreshPage(refreshControl: UIRefreshControl) {
@@ -56,8 +54,7 @@ class AlbumsViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumViewCell.identifier(), for: indexPath) as? AlbumViewCell else { fatalError(AlbumsViewController.kCellErrorMsg) }
         
         let albumModel = albumArray[indexPath.row]
-        cell.setAlbumName(name: albumModel.name)
-        cell.setAlbumImage(imageURL: albumModel.imageURL)
+        cell.setAlbumData(albumModel: albumModel)
         return cell
     }
     

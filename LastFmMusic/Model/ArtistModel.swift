@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class ArtistModel {
-    var name: String
-    var listeners: Int
+struct ArtistModel {
+    let name: String
+    let listeners: Int
     
     init(name: String, listeners: Int) {
         self.name = name

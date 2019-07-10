@@ -9,15 +9,16 @@
 import Foundation
 import UIKit
 
-class AlbumsListModel {
-    var name: String
-    var imageURL: String
-    var image: UIImage?
-    var artist: ArtistModel
+struct AlbumsListModel {
+    let name: String
+    let imageURL: String
+    let image: UIImage?
+    let artist: ArtistModel
     
     init(name: String, artist: ArtistModel, imageURL: String) {
         self.name = name
         self.imageURL = imageURL
         self.artist = artist
+        self.image = nil
     }
 }

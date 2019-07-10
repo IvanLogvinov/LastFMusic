@@ -19,16 +19,12 @@ class AlbumViewCell: UITableViewCell {
         self.separatorInset = UIEdgeInsets.zero
     }
     
-    func setAlbumName(name: String) {
-        albumNameLabel.text = name
-    }
-    
-    func setAlbumImage(imageURL: String) {
-        if !imageURL.isEmpty {
-            albumImageView.kf.setImage(with: URL(string: imageURL))
+    func setAlbumData(albumModel: AlbumsListModel) {
+        albumNameLabel.text = albumModel.name
+        if !albumModel.imageURL.isEmpty {
+            albumImageView.kf.setImage(with: URL(string: albumModel.imageURL))
         } else {
             albumImageView.image = UIImage(named: "no_img")
         }
     }
-    
 }

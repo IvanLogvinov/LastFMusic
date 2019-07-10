@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 enum DataType {
-    case Albums
-    case AlbumDetails
-    case Artist
+    case albums
+    case albumDetails
+    case artist
 }
 
 class DataManager {
@@ -35,14 +35,14 @@ class DataManager {
     
     func getURLForDataType(type: DataType, object: AnyObject?) -> String {
         switch type {
-        case .Albums:
+        case .albums:
             return "?method=tag.gettopalbums&tag=hip+hop"
-        case .AlbumDetails:
+        case .albumDetails:
             guard let object = object as? AlbumsListModel else { return "" }
             return "?method=album.getinfo" + "&artist="
                 + object.artist.name.replacingOccurrences(of: " ", with: "+")
                 + "&album=" + object.name.replacingOccurrences(of: " ", with: "+")
-        case .Artist:
+        case .artist:
             guard let object = object as? ArtistModel else { return "" }
             return "?method=artist.getinfo" + "&artist=" + object.name.replacingOccurrences(of: " ", with: "+")
         }
@@ -71,7 +71,7 @@ class DataManager {
                     completionHandler(nil, self.getStoredAlbumDetails())
                 }, json: json, type: type)
             }
-        }, url: getURLForDataType(type: type, object: albumModel))
+        }, url: getURLForDataType(type: type, object: albumModel as AnyObject))
     }
     
     func getArtistDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: ArtistModel?) -> Void,
@@ -84,7 +84,7 @@ class DataManager {
                     completionHandler(nil, self.getStoredArtist())
                 }, json: json, type: type)
             }
-        }, url: getURLForDataType(type: type, object: artistModel))
+        }, url: getURLForDataType(type: type, object: artistModel as AnyObject))
     }
     
     func getImage(completionHandler: @escaping (UIImage?) -> Void, by url: String) {

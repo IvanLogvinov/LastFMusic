@@ -24,7 +24,7 @@ class DataBaseManager {
         deleteEntityData(entityName: Entities.albumDetails.rawValue)
         deleteEntityData(entityName: Entities.artist.rawValue)
         
-        if  (type == DataType.Albums) {
+        if  (type == DataType.albums) {
             for (_,subJson):(String, JSON) in json["albums"]["album"] {
                 if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albums.rawValue),
                                                                         into: managedObjectContext) as? Albums {
@@ -33,7 +33,7 @@ class DataBaseManager {
                     recordItem.artistName = subJson["artist"]["name"].string
                 }
             }
-        } else if (type == DataType.AlbumDetails) {
+        } else if (type == DataType.albumDetails) {
             if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albumDetails.rawValue),
                                                                     into: managedObjectContext) as? AlbumDetails {
                 let subJson = json["album"]
@@ -42,7 +42,7 @@ class DataBaseManager {
                 recordItem.tracksCount = Int16(subJson["tracks"]["track"].count)
                 recordItem.url = subJson["url"].string
             }
-        } else if (type == DataType.Artist) {
+        } else if (type == DataType.artist) {
             if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.artist.rawValue),
                                                                     into: managedObjectContext) as? Artist {
                 recordItem.name = json["artist"]["name"].string

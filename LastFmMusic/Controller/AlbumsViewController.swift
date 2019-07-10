@@ -32,7 +32,7 @@ class AlbumsViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(refreshPage), for: .valueChanged)
         tableView.refreshControl = refreshControl
         getAlbumsData()
-       // AppReview().showReviewView(afterMinimumLaunchCount: AlbumsViewController.kDefaultReviewLaunches)
+        AppReview().showReviewView(afterMinimumLaunchCount: AlbumsViewController.kDefaultReviewLaunches)
     }
     
     func getAlbumsData() {

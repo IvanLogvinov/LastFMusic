@@ -26,7 +26,7 @@
 		B203916922D36D2600089C8F /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B203913C22D3444700089C8F /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B203916C22D36D5E00089C8F /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B203913D22D3444700089C8F /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B203916E22D36D7A00089C8F /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B203913E22D3444700089C8F /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B203917122D38AB300089C8F /* AlbumDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917022D38AB300089C8F /* AlbumDetailsModel.swift */; };
+		B203917122D38AB300089C8F /* AlbumDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917022D38AB300089C8F /* AlbumDetailModel.swift */; };
 		B203917322D38B0D00089C8F /* ArtistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917222D38B0D00089C8F /* ArtistModel.swift */; };
 		B203917522D46B0200089C8F /* AppReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B203917422D46B0200089C8F /* AppReview.swift */; };
 		B20391BA22D4DA8B00089C8F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20391B822D4DA8A00089C8F /* FBSDKCoreKit.framework */; };
@@ -75,7 +75,7 @@
 		B203915F22D34F8400089C8F /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
 		B203916322D3609100089C8F /* LasFmApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LasFmApp.xcdatamodel; sourceTree = "<group>"; };
 		B203916522D3661800089C8F /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
-		B203917022D38AB300089C8F /* AlbumDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsModel.swift; sourceTree = "<group>"; };
+		B203917022D38AB300089C8F /* AlbumDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailModel.swift; sourceTree = "<group>"; };
 		B203917222D38B0D00089C8F /* ArtistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistModel.swift; sourceTree = "<group>"; };
 		B203917422D46B0200089C8F /* AppReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReview.swift; sourceTree = "<group>"; };
 		B203917622D471A200089C8F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.40.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				B203914C22D3464F00089C8F /* AlbumsListModel.swift */,
-				B203917022D38AB300089C8F /* AlbumDetailsModel.swift */,
+				B203917022D38AB300089C8F /* AlbumDetailModel.swift */,
 				B203917222D38B0D00089C8F /* ArtistModel.swift */,
 			);
 			path = Model;
@@ -298,7 +298,7 @@
 				B203914D22D3464F00089C8F /* AlbumsListModel.swift in Sources */,
 				B203914A22D3462500089C8F /* Extensions.swift in Sources */,
 				B203915422D3473400089C8F /* NetworkManager.swift in Sources */,
-				B203917122D38AB300089C8F /* AlbumDetailsModel.swift in Sources */,
+				B203917122D38AB300089C8F /* AlbumDetailModel.swift in Sources */,
 				B203917322D38B0D00089C8F /* ArtistModel.swift in Sources */,
 				B203915022D3468900089C8F /* CoreDataManager.swift in Sources */,
 				B203915222D346BC00089C8F /* DataBaseManager.swift in Sources */,

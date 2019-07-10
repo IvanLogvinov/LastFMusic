@@ -62,12 +62,12 @@ class DataManager {
     
     func getAlbumDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: AlbumDetailModel?) -> Void,
                          type: DataType, albumModel: AlbumsListModel) {
-        completionHandler(nil, self.getStoredAlbumDetails())
+        completionHandler(nil, self.getStoredAlbumDetails(detailsModel: albumModel))
         networkManager.getAlbumDetailData(completionHandler: { (album, error) in
             if error == nil {
                 guard let album = album else { assert(false, Error.errorJson.rawValue) }
                 self.dataBaseManager.addAlbumDetailsData(completionHandler: { (status) in
-                    completionHandler(nil, self.getStoredAlbumDetails())
+                    completionHandler(nil, self.getStoredAlbumDetails(detailsModel: albumModel))
                 }, albumDetail: album)
             }
         }, url: getURLForDataType(type: type, object: albumModel as AnyObject))
@@ -75,12 +75,12 @@ class DataManager {
     
     func getArtistDetails(completionHandler:@escaping (_ error: String?, _ detailsArray: ArtistModel?) -> Void,
                           type: DataType, artistModel: ArtistModel) {
-        completionHandler(nil, self.getStoredArtist())
+        completionHandler(nil, self.getStoredArtist(artistModel: artistModel))
         networkManager.getArtistData(completionHandler: { (artist, error) in
             if error == nil {
                 guard let artist = artist else { assert(false, Error.errorJson.rawValue) }
                 self.dataBaseManager.addArtistData(completionHandler: { (status) in
-                    completionHandler(nil, self.getStoredArtist())
+                    completionHandler(nil, self.getStoredArtist(artistModel: artistModel))
                 }, artist: artist)
             }
         }, url: getURLForDataType(type: type, object: artistModel as AnyObject))
@@ -100,20 +100,23 @@ class DataManager {
     
     func getStoredAlbums() -> [AlbumsListModel]? {
         let storedAlbums = dataBaseManager.getStoredObjects(
+            predicate: nil,
             entityName: Entities.albums.rawValue) as? [Albums]
         guard let data = storedAlbums else { return [] }
         return mapStoredAlbums(storedData: data)
     }
     
-    func getStoredAlbumDetails() -> AlbumDetailModel? {
+    func getStoredAlbumDetails(detailsModel: AlbumsListModel) -> AlbumDetailModel? {
         let storedAlbumDetails = dataBaseManager.getStoredObjects(
+            predicate: NSPredicate(format: "name == %@", detailsModel.name),
             entityName: Entities.albumDetails.rawValue) as? [AlbumDetails]
         guard let data = storedAlbumDetails else { return nil }
         return mapStoredAlbumDetail(storedData: data)
     }
     
-    func getStoredArtist() -> ArtistModel? {
+    func getStoredArtist(artistModel: ArtistModel) -> ArtistModel? {
         let storedArtist = dataBaseManager.getStoredObjects(
+            predicate: NSPredicate(format: "name == %@", artistModel.name),
             entityName: Entities.artist.rawValue) as? [Artist]
         guard let data = storedArtist else { return nil }
         return mapStoredArtist(storedData: data)

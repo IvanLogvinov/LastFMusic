@@ -18,13 +18,12 @@ class DataBaseManager {
     
     func addAlbumDetailsData(completionHandler:@escaping (Bool) -> Void,
                              albumDetail: AlbumDetailModel) {
-        
-        // TODO: add check for duplicates and disable database clean
-        deleteEntityData(entityName: Entities.albumDetails.rawValue)
-        
-        if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albumDetails.rawValue),
-                                                                into: managedObjectContext) as? AlbumDetails {
-            mapAlbumDetailsManagedObject(recordItem: recordItem, albumDetail: albumDetail)
+        let predicate = NSPredicate(format: "name == %@", albumDetail.name)
+        if (self.getStoredObjects(predicate: predicate, entityName: Entities.albumDetails.rawValue).count == 0) {
+            if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albumDetails.rawValue),
+                                                                    into: managedObjectContext) as? AlbumDetails {
+                mapAlbumDetailsManagedObject(recordItem: recordItem, albumDetail: albumDetail)
+            }
         }
         saveContextData()
         completionHandler(true)
@@ -32,11 +31,12 @@ class DataBaseManager {
     
     func addArtistData(completionHandler:@escaping (Bool) -> Void,
                        artist: ArtistModel) {
-        deleteEntityData(entityName: Entities.artist.rawValue)
-        // TODO: add check for duplicates and disable database clean
-        if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.artist.rawValue),
-                                                                into: managedObjectContext) as? Artist {
-            mapArtistManagedObject(recordItem: recordItem, artist: artist)
+        let predicate = NSPredicate(format: "name == %@", artist.name)
+        if (self.getStoredObjects(predicate: predicate, entityName: Entities.artist.rawValue).count == 0) {
+            if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.artist.rawValue),
+                                                                    into: managedObjectContext) as? Artist {
+                mapArtistManagedObject(recordItem: recordItem, artist: artist)
+            }
         }
         saveContextData()
         completionHandler(true)
@@ -44,12 +44,13 @@ class DataBaseManager {
     
     func addAlbumData(completionHandler:@escaping (Bool) -> Void,
                       albums: [AlbumsListModel]) {
-        deleteEntityData(entityName: Entities.albums.rawValue)
-        // TODO: add check for duplicates and disable database clean
         for album in albums {
-            if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albums.rawValue),
-                                                                    into: managedObjectContext) as? Albums {
-                mapAlbumManagedObject(recordItem: recordItem, album: album)
+            let predicate = NSPredicate(format: "albumName == %@", album.name)
+            if (self.getStoredObjects(predicate: predicate, entityName: Entities.albums.rawValue).count == 0) {
+                if let recordItem = NSEntityDescription.insertNewObject(forEntityName: (Entities.albums.rawValue),
+                                                                        into: managedObjectContext) as? Albums {
+                    mapAlbumManagedObject(recordItem: recordItem, album: album)
+                }
             }
         }
         saveContextData()
@@ -60,11 +61,11 @@ class DataBaseManager {
     
     // MARK: - Get Stored Records From DataBase
     
-    func getStoredObjects(entityName: String) -> [NSManagedObject] {
+    func getStoredObjects(predicate: NSPredicate?, entityName: String) -> [NSManagedObject] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
         fetchRequest.sortDescriptors = nil
-        fetchRequest.predicate = nil
+        fetchRequest.predicate = predicate
         
         var storedRecords: [NSManagedObject] = []
         do {

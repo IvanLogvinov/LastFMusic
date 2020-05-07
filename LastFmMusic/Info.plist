@@ -31,6 +31,10 @@
 	<string>2116898141772313</string>
 	<key>FacebookDisplayName</key>
 	<string>LastFM Music Info</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

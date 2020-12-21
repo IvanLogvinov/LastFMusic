@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 import FBSDKShareKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, Storyboarded {
     
     // MARK: - Dependency Properties
-    
+
+    weak var coordinator: MainCoordinator?
     var albumItem: AlbumsListModel!
     var dataManager: DataManager!
     
@@ -41,12 +42,12 @@ class DetailsViewController: UIViewController {
     // MARK: - Get Data Methods
     
     func getAlbumData() {
-            dataManager?.getAlbumDetails(completionHandler: { [weak self] (error, detailsModel) in
-                if error == nil, let detailsModel = detailsModel {
-                    self?.detailsModel = detailsModel
-                    self?.getArtistData()
-                }
-                }, type: .albumDetails, albumModel: albumItem)
+        dataManager?.getAlbumDetails(completionHandler: { [weak self] (error, detailsModel) in
+            if error == nil, let detailsModel = detailsModel {
+                self?.detailsModel = detailsModel
+                self?.getArtistData()
+            }
+        }, type: .albumDetails, albumModel: albumItem)
     }
     
     func getArtistData() {
@@ -55,7 +56,7 @@ class DetailsViewController: UIViewController {
                 self?.detailsModel?.artist = artistModel
                 self?.setUpContent()
             }
-            }, type: .artist, artistModel: albumItem.artist)
+        }, type: .artist, artistModel: albumItem.artist)
     }
     
     // MARK: - Actions
@@ -68,7 +69,7 @@ class DetailsViewController: UIViewController {
         }
         
         if let albumName = detailsModel?.name,
-            let artistName = detailsModel?.artist?.name {
+           let artistName = detailsModel?.artist?.name {
             content.quote = "Listen to: " + albumName + " by " + artistName
         }
         let dialog = ShareDialog()
@@ -85,7 +86,7 @@ class DetailsViewController: UIViewController {
         publishDateLabel.text = detailsModel?.publishDate
         artistName.text = detailsModel?.artist?.name
         if let listeners = detailsModel?.artist?.listeners,
-            let trackCount = detailsModel?.trackCount {
+           let trackCount = detailsModel?.trackCount {
             artistListeners.text = String(listeners)
             tracksCountLabel.text = String(trackCount)
         }

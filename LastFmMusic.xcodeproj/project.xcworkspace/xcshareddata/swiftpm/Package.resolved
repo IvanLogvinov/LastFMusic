@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": "master",
+          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
+          "version": null
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher",
+        "state": {
+          "branch": "master",
+          "revision": "532ee52cb32a1c28bde19867798f10ee71a46715",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON",
+        "state": {
+          "branch": "master",
+          "revision": "cbf2d4955557abc1ed5debab21d20763e7ebc540",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

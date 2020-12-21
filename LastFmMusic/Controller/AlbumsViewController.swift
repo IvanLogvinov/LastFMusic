@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class AlbumsViewController: UITableViewController {
+class AlbumsViewController: UITableViewController, Storyboarded {
     
     // MARK: - Constants
     
@@ -17,8 +17,9 @@ class AlbumsViewController: UITableViewController {
     private static let kDetailsSegue = "DetailsSegue"
     
     // MARK: - Properties
-    
-    private var dataManager: DataManager!
+
+    var coordinator: MainCoordinator?
+    var dataManager: DataManager!
     private var albumArray: [AlbumsListModel] = []
     
     // MARK: - Lifecycle
@@ -33,7 +34,6 @@ class AlbumsViewController: UITableViewController {
     }
     
     func getAlbumsData() {
-        dataManager = DataManager()
         dataManager.getAlbumsList(completionHandler: { [weak self] (error, albumsArray) in
             if error == nil, let albumsArray = albumsArray {
                 self?.albumArray = albumsArray
@@ -59,7 +59,7 @@ class AlbumsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let albumItem = albumArray[indexPath.row]
-        self.performSegue(withIdentifier: AlbumsViewController.kDetailsSegue, sender: albumItem)
+        coordinator?.detailsViewController(albumItem: albumItem)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,14 +69,4 @@ class AlbumsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return AlbumsViewController.kCellHeightSize
     }
-    
-    //MARK: - UIStoryboardSegue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? DetailsViewController {
-            vc.albumItem = sender as? AlbumsListModel
-            vc.dataManager = self.dataManager
-        }
-    }
 }
-

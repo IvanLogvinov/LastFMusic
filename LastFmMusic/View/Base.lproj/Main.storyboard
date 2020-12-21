@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nDp-nK-Lsa">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +11,7 @@
         <!--LastFM music-->
         <scene sceneID="b8e-MI-FaD">
             <objects>
-                <tableViewController id="djF-zR-QmW" customClass="AlbumsViewController" customModule="LastFmMusic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AlbumsViewController" id="djF-zR-QmW" customClass="AlbumsViewController" customModule="LastFmMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vfD-da-X4H">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="170"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UV4-rU-2xT" id="QXf-Ya-mdH">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="169.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -34,9 +32,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="LastFM music" id="uXc-d4-TWi"/>
-                    <connections>
-                        <segue destination="3WJ-El-v9O" kind="show" identifier="DetailsSegue" id="vI0-Oh-UKP"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10L-3s-Ybp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -45,13 +40,13 @@
         <!--Details View Controller-->
         <scene sceneID="jMp-68-3Gv">
             <objects>
-                <viewController id="3WJ-El-v9O" customClass="DetailsViewController" customModule="LastFmMusic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsViewController" id="3WJ-El-v9O" customClass="DetailsViewController" customModule="LastFmMusic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BT3-r0-YhU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vfq-ka-Lq2">
-                                <rect key="frame" x="20" y="84" width="374" height="100"/>
+                                <rect key="frame" x="20" y="20" width="374" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a14-RA-2U0">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="42"/>
@@ -107,7 +102,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUB-5x-ygx">
-                                <rect key="frame" x="20" y="204" width="374" height="100"/>
+                                <rect key="frame" x="20" y="140" width="374" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IT2-Wr-l3w">
                                         <rect key="frame" x="8" y="8" width="358" height="21"/>
@@ -162,9 +157,9 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9K-6r-Tjq">
-                                <rect key="frame" x="20" y="312" width="374" height="50"/>
+                                <rect key="frame" x="20" y="248" width="374" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-Zl-Oi7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUL-Zl-Oi7">
                                         <rect key="frame" x="121" y="10" width="132" height="30"/>
                                         <state key="normal" title="Share on Facebook"/>
                                         <connections>
@@ -180,6 +175,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Ia-lJ-d2x"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vfq-ka-Lq2" firstAttribute="top" secondItem="8Ia-lJ-d2x" secondAttribute="top" constant="20" id="0w0-pL-lgL"/>
@@ -192,7 +188,6 @@
                             <constraint firstItem="8Ia-lJ-d2x" firstAttribute="trailing" secondItem="Vfq-ka-Lq2" secondAttribute="trailing" constant="20" id="wYv-2q-gcW"/>
                             <constraint firstItem="8Ia-lJ-d2x" firstAttribute="trailing" secondItem="M9K-6r-Tjq" secondAttribute="trailing" constant="20" id="zhD-bF-plA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="8Ia-lJ-d2x"/>
                     </view>
                     <connections>
                         <outlet property="albumName" destination="a14-RA-2U0" id="tss-hD-l5h"/>
@@ -206,22 +201,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiA-xB-2vY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="173.91304347826087" y="112.50000000000001"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Ief-7V-02T">
-            <objects>
-                <navigationController id="nDp-nK-Lsa" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wtz-3u-clT">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="djF-zR-QmW" kind="relationship" relationship="rootViewController" id="5t6-J2-PLz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QIG-Xy-vUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1248" y="114"/>
         </scene>
     </scenes>
 </document>

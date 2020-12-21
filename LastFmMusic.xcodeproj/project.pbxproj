@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,10 @@
 		B20391C322D61B7600089C8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391C222D61B7600089C8F /* Enums.swift */; };
 		B20391CB22D61D0700089C8F /* LastFmMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20391CA22D61D0700089C8F /* LastFmMusicTests.swift */; };
 		B20391D622D627BC00089C8F /* AlbumInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = B20391D522D627BB00089C8F /* AlbumInfo.json */; };
+		B2CE7FF225911D28007037E3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE7FF125911D28007037E3 /* Coordinator.swift */; };
+		B2CE7FF62591254C007037E3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B2CE7FF52591254C007037E3 /* Kingfisher */; };
+		B2CE7FFA2591258E007037E3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B2CE7FF92591258E007037E3 /* Alamofire */; };
+		B2CE7FFE259125C4007037E3 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = B2CE7FFD259125C4007037E3 /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,7 @@
 		B20391CA22D61D0700089C8F /* LastFmMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFmMusicTests.swift; sourceTree = "<group>"; };
 		B20391CC22D61D0700089C8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B20391D522D627BB00089C8F /* AlbumInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AlbumInfo.json; sourceTree = "<group>"; };
+		B2CE7FF125911D28007037E3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +119,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2CE7FF62591254C007037E3 /* Kingfisher in Frameworks */,
+				B2CE7FFA2591258E007037E3 /* Alamofire in Frameworks */,
 				B20391BC22D4DA8B00089C8F /* FBSDKShareKit.framework in Frameworks */,
+				B2CE7FFE259125C4007037E3 /* SwiftyJSON in Frameworks */,
 				B20391BA22D4DA8B00089C8F /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +218,7 @@
 				B203915522D3475F00089C8F /* DataManager.swift */,
 				B20391BE22D6002400089C8F /* DataMapping.swift */,
 				B20391C022D60DD600089C8F /* DataParsing.swift */,
+				B2CE7FF125911D28007037E3 /* Coordinator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -286,6 +295,11 @@
 			dependencies = (
 			);
 			name = LastFmMusic;
+			packageProductDependencies = (
+				B2CE7FF52591254C007037E3 /* Kingfisher */,
+				B2CE7FF92591258E007037E3 /* Alamofire */,
+				B2CE7FFD259125C4007037E3 /* SwiftyJSON */,
+			);
 			productName = LastFmMusic;
 			productReference = B203912622D329F700089C8F /* LastFmMusic.app */;
 			productType = "com.apple.product-type.application";
@@ -336,6 +350,11 @@
 				Base,
 			);
 			mainGroup = B203911D22D329F700089C8F;
+			packageReferences = (
+				B2CE7FF42591254C007037E3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B2CE7FF82591258E007037E3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B2CE7FFC259125C4007037E3 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = B203912722D329F700089C8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -378,6 +397,7 @@
 				B203915622D3475F00089C8F /* DataManager.swift in Sources */,
 				B203915922D3481900089C8F /* AlbumsViewController.swift in Sources */,
 				B20391BF22D6002400089C8F /* DataMapping.swift in Sources */,
+				B2CE7FF225911D28007037E3 /* Coordinator.swift in Sources */,
 				B203917522D46B0200089C8F /* AppReview.swift in Sources */,
 				B20391C322D61B7600089C8F /* Enums.swift in Sources */,
 				B203914D22D3464F00089C8F /* AlbumsListModel.swift in Sources */,
@@ -666,6 +686,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B2CE7FF42591254C007037E3 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B2CE7FF82591258E007037E3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		B2CE7FFC259125C4007037E3 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B2CE7FF52591254C007037E3 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2CE7FF42591254C007037E3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		B2CE7FF92591258E007037E3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2CE7FF82591258E007037E3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		B2CE7FFD259125C4007037E3 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2CE7FFC259125C4007037E3 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B203916222D3609100089C8F /* LastFmApp.xcdatamodeld */ = {
